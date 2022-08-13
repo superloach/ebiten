@@ -97,6 +97,14 @@ func (i *Input) IsKeyPressed(key Key) bool {
 	return i.keyPressed[gk]
 }
 
+func (i *Input) KeyName(key Key) string {
+	gk, ok := uiKeyToGLFWKey[key]
+	if !ok {
+		return ""
+	}
+	return glfw.GetKeyName(gk, 0)
+}
+
 func (i *Input) AppendInputChars(runes []rune) []rune {
 	if !i.ui.isRunning() {
 		return nil

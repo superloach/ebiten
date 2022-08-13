@@ -82,10 +82,12 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	}
 
 	keyStrs := []string{}
-	for _, p := range g.keys {
-		keyStrs = append(keyStrs, p.String())
+	keyNames := []string{}
+	for _, k := range g.keys {
+		keyStrs = append(keyStrs, k.String())
+		keyNames = append(keyNames, ebiten.KeyName(k))
 	}
-	ebitenutil.DebugPrint(screen, strings.Join(keyStrs, ", "))
+	ebitenutil.DebugPrint(screen, strings.Join(keyStrs, ", ")+"\n"+strings.Join(keyNames, ", "))
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
